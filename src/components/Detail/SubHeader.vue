@@ -1,0 +1,67 @@
+<template>
+  <Header>
+    <div slot="left" class="header-left" @click.stop="back"></div>
+    <p slot="middle" class="header-title">{{title}}</p>
+    <div slot="right" class="header-right"></div>
+
+  </Header>
+</template>
+
+<script>
+import Header from '../Header' 
+export default {
+  name:"SubHeader",
+  methods:{
+    
+    back(){
+      window.history.back()
+    }
+  },
+  props:{
+    title:{
+      type:String,
+      default:'',
+      required:true
+    }
+    
+  }
+}
+</script>
+
+<style scoped lang="scss">
+@import "../../assets/css/variable";
+@import "../../assets/css/mixin";
+.header {
+  .header-left {
+    @include bg_img('../../assets/images/back')
+  }
+  .header-right {
+    @include bg_img('../../assets/images/more')
+  }
+  .header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    @include font_size($font_medium);
+    @include no-wrap();
+    height: 60px;
+    margin-top: 20px;
+    li{
+      height: 60px;
+      line-height: 60px;
+      padding: 0 20px;
+      &:nth-of-type(1){
+        border-right: 1px solid #fff;
+      }
+      &.active{
+        background: rgba(255,255,255, 0.3);
+      }
+    }
+  }
+}
+
+</style>
